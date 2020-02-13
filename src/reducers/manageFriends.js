@@ -1,17 +1,11 @@
-export function manageFriends(stateReceived, action){
-
-    state = {
-        friends: []
-    }
+export function manageFriends(state={friends:[]}, action){
 
     switch (action.type) {
         case 'ADD_FRIEND':
-            state.friends = [...stateReceived.friends, action.friend]
-          return state;
+            return ({...state, friends:[...state.friends, action.friend]});
         case 'REMOVE_FRIEND':
-            state.friends = stateReceived.friends.filter(friend=>friend.id!==action.friend.id)
-            return state;
+            return ({...state, friends:[state.friends.filter(friend=>friend.id!==action.friend.id)]})
         default:
-            return stateReceived;
+            return state;
     }
 }
